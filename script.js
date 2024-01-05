@@ -4,6 +4,7 @@ const itemList = document.getElementById('item-list');
 const clearBtn = document.getElementById('clear');
 const itemFilter = document.getElementById('filter');
 
+getItemLocalStorage(); 
 
 function onAddItemSubmit(e) {
     e.preventDefault();
@@ -55,6 +56,14 @@ function addItemToStorage (item){
     }
 }
 
+function getItemLocalStorage(){
+    const itemStorage = JSON.parse(localStorage.getItem('items'));
+    if (itemStorage) {
+        itemStorage.map((item => {
+            addItemToDOM(item);
+        }));
+    }
+}
 function createButton(classes) {
     const button = document.createElement('button');
     button.className = classes;
